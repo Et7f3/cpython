@@ -1,0 +1,18 @@
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: build old-fashion way
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: |
+      ./configure
+      make
+      make test
+      sudo make install
